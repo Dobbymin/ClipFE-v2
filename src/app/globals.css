@@ -122,6 +122,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply mx-auto flex w-full max-w-[480px] flex-col bg-clip-background font-pretendard;
+    @apply mx-auto flex w-full max-w-[480px] flex-col bg-clip-background font-pretendard md:max-w-md;
   }
 }
