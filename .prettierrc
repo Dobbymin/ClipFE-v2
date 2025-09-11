@@ -20,7 +20,7 @@
 
   "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
 
-  "tailwindConfig": "./src/app/globals.css",
+  "tailwindStylesheet": "./src/app/globals.css",
 
   "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
   "importOrder": [
