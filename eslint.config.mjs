@@ -11,11 +11,12 @@ const __dirname = dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
-
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript", "plugin:prettier/recommended"),
   {
     ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"],
+  },
+  ...compat.extends("next/core-web-vitals", "next/typescript", "plugin:prettier/recommended"),
+  {
     plugins: {
       "unused-imports": unusedImports,
       "jsx-a11y": jsxA11y,
