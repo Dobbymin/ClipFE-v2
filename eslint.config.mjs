@@ -13,7 +13,7 @@ const compat = new FlatCompat({
 });
 const eslintConfig = [
   {
-    ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"],
+    ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "public/mockServiceWorker.js", "next-env.d.ts"],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript", "plugin:prettier/recommended"),
   {
