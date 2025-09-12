@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
+import { MSWComponent, QueryClientProvider } from "@/shared";
 import type { Metadata } from "next";
 
 import "./globals.css";
@@ -35,7 +36,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${pretendard.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        <QueryClientProvider>
+          <MSWComponent />
+          {children}
+        </QueryClientProvider>
       </body>
     </html>
   );
