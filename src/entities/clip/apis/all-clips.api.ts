@@ -22,21 +22,17 @@ export interface GetAllClipsParameter {
 export const ALL_CLIPS_PATH = `${BASE_URL}/api/clips`;
 
 export const allClipsAPI = async ({ lastCreatedAt, size }: GetAllClipsParameter): Promise<AllClipsResponse | null> => {
-  try {
-    const params = new URLSearchParams({
-      lastCreatedAt,
-      size: String(size),
-    });
+  const params = new URLSearchParams({
+    lastCreatedAt,
+    size: String(size),
+  });
 
-    const url = `${ALL_CLIPS_PATH}?${params.toString()}`;
-    const response = await fetch(url);
+  const url = `${ALL_CLIPS_PATH}?${params.toString()}`;
+  const response = await fetch(url);
 
-    if (!response.ok) throw new Error(response.statusText);
+  if (!response.ok) throw new Error(response.statusText);
 
-    return await response.json();
-  } catch (error) {
-    console.error("allClipAPI error", error);
+  const responseData = await response.json();
 
-    return null;
-  }
+  return await responseData.data;
 };
