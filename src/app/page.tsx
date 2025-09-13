@@ -2,9 +2,10 @@ import { DescriptionSection, FriendListSection, RecentClipSection } from "@/feat
 
 export default function Home() {
   const nickname = "Dobbymin";
+  const clipCount = 3;
   return (
     <div className='flex w-full flex-col items-center justify-center gap-4 px-4'>
-      <DescriptionSection nickname={nickname} />
+      <DescriptionSection clipCount={clipCount} nickname={nickname} />
       <RecentClipSection nickname={nickname} />
       <FriendListSection nickname={nickname} />
     </div>
