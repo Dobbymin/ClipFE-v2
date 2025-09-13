@@ -1,3 +1,4 @@
+// TODO: Thumbnail 추가
 export type ClipContents = {
   title: string;
   tagId: number;

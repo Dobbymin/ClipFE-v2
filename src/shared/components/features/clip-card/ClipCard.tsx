@@ -19,6 +19,8 @@ export const ClipCard = ({ thumbnail, tagName, title, memo, url }: Props) => {
 
   const shareClip = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
+
+    // TODO: Toast를 사용하여 수정
     alert("공유 기능 준비 중입니다!");
   };
   return (
