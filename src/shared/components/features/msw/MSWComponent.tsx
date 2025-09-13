@@ -2,42 +2,28 @@
 
 import { useEffect, useState } from "react";
 
-import { http, passthrough } from "msw";
-
-import { BASE_URL } from "@/shared/libs";
-
 const IS_MOCK_ENABLED = process.env.NEXT_PUBLIC_API_MOCKING === "enabled";
 
 export const MSWComponent = () => {
-  const [mswReady, setMswReady] = useState(false);
+  const [mswReady, setMswReady] = useState(() => !IS_MOCK_ENABLED);
 
   useEffect(() => {
-    if (IS_MOCK_ENABLED && !mswReady) {
-      const initMsw = async () => {
-        const { worker } = await import("../../../mocks");
+    const init = async () => {
+      if (IS_MOCK_ENABLED) {
+        const initMocks = await import("../../../mocks/config/msw-instance").then((res) => res.initMsw);
 
-        const baseUrl = new URL(BASE_URL);
-        if (worker) {
-          worker.use(
-            http.get("*", ({ request }) => {
-              const url = new URL(request.url);
-              if (url.origin !== baseUrl.origin) {
-                return passthrough();
-              }
-            }),
-          );
-
-          await worker.start({
-            onUnhandledRequest: "bypass",
-          });
-        }
+        await initMocks();
 
         setMswReady(true);
-      };
+      }
+    };
 
-      initMsw();
+    if (!mswReady) {
+      init();
     }
   }, [mswReady]);
+
+  if (!mswReady) return null;
 
   return null;
 };
