@@ -1,9 +1,13 @@
 @import "tailwindcss";
+@import "tailwind-scrollbar-hide/v4";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-pretendard: var(--font-pretendard);
+  --color-clip-background: var(--clip-background);
+  --color-clip-primary: var(--clip-primary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -44,6 +48,8 @@
 }
 
 :root {
+  --clip-background: oklch(0.9791 0 0);
+  --clip-primary: oklch(0.8353 0.1629 118.51);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -114,9 +120,9 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply scrollbar-hide border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply mx-auto flex w-full max-w-[480px] flex-col bg-clip-background font-pretendard md:max-w-md;
   }
 }
