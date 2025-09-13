@@ -10,7 +10,7 @@ export const AllClipsQueryKey = {
 
 export const useGetAllClips = ({ lastCreatedAt, size }: GetAllClipsParameter) => {
   return useQuery({
-    queryKey: AllClipsQueryKey.allClips(),
+    queryKey: [...AllClipsQueryKey.allClips(), { lastCreatedAt, size }],
     queryFn: () => allClipsAPI({ lastCreatedAt, size }),
   });
 };
