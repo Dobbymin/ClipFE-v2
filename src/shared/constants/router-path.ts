@@ -3,7 +3,7 @@ export const ROUTER_PATH = {
   MAIN: "/",
   ADD: "/add",
   CLIP: "/clip",
-  CLIP_DETAIL: "/clip/:id",
+  CLIP_DETAIL: "/clip/[id]",
   LOGIN: "/login",
   SIGN_UP: "/signup",
   SEARCH: "/search",
