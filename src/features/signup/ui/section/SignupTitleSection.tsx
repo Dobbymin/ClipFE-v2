@@ -6,7 +6,7 @@ export const SignupTitleSection = () => {
   return (
     <div className='flex w-full flex-col items-center justify-center'>
       <Image alt='clip-logo' className='h-auto py-8' src={ClipLogo} width={100} />
-      <div className='mb-4 text-lg font-bold text-[#333]'>
+      <div className='mb-4 text-lg font-bold text-neutral-700 dark:text-neutral-300'>
         지금 가입하고 첫 링크를 <span className='font-benviitLasik text-clip-primary'>Clip</span> 해보세요!
       </div>
     </div>
