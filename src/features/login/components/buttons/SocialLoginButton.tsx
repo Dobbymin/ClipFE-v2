@@ -17,11 +17,11 @@ const socialAssetMap: Record<Variant, { icon: StaticImageData; className: string
   },
   naver: {
     icon: NAVER_SYMBOL,
-    className: "bg-[#03c75a]",
+    className: "bg-naver",
   },
   kakao: {
     icon: KAKAO_SYMBOL,
-    className: "bg-[#fee500]",
+    className: "bg-kakao",
   },
 };
 
