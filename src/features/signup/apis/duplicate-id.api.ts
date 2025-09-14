@@ -20,9 +20,6 @@ export const duplicateIdAPI = async ({ userId }: DuplicateIdAPIRequest): Promise
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        userId,
-      }),
     });
 
     if (!response.ok) {
@@ -32,7 +29,7 @@ export const duplicateIdAPI = async ({ userId }: DuplicateIdAPIRequest): Promise
     const data: DuplicateIdAPIResponse = await response.json();
     return data;
   } catch (error) {
-    console.error("duplicateNicknameAPI error:", error);
+    console.error("duplicateIdAPI error:", error);
     throw error;
   }
 };

@@ -23,9 +23,6 @@ export const duplicateNicknameAPI = async ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        nickname,
-      }),
     });
 
     if (!response.ok) {
