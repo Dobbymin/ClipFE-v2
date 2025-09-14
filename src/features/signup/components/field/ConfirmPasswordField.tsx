@@ -10,9 +10,9 @@ export const ConfirmPasswordField = () => {
       name='confirmPassword'
       render={({ field }) => (
         <FormItem>
-          <FormLabel>비밀번호</FormLabel>
+          <FormLabel>비밀번호 확인</FormLabel>
           <FormControl className='grid gap-3'>
-            <Input {...field} placeholder='비밀번호를 입력하세요' type='password' />
+            <Input {...field} placeholder='비밀번호를 다시 입력하세요' type='password' />
           </FormControl>
           <FormMessage />
         </FormItem>
