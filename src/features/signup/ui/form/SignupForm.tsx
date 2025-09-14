@@ -78,10 +78,7 @@ export const SignupForm = () => {
         </div>
         <div className='flex items-center gap-2'>
           <span className='text-sm'>이미 가입했다면?</span>
-          <Link
-            className='text-base font-bold text-black hover:underline'
-            href={ROUTER_PATH.LOGIN} // 5. 'to' 대신 'href' 사용!
-          >
+          <Link className='text-base font-bold text-black hover:underline' href={ROUTER_PATH.LOGIN}>
             로그인
           </Link>
         </div>
