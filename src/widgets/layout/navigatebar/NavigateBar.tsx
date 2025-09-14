@@ -65,9 +65,13 @@ export const NavigateBar = () => {
 
       <div className='relative mx-auto h-[65px] w-full max-w-[500px] rounded-t-[20px] bg-white'>
         <div className='flex h-full items-center'>
-          <div className='flex flex-1 justify-around'>{renderNavItems(BUTTON_LIST.slice(0, 2))}</div>
+          <div className='flex flex-1 justify-around'>
+            {renderNavItems(BUTTON_LIST.slice(0, Math.ceil(BUTTON_LIST.length / 2)))}
+          </div>
           <div className='w-20' />
-          <div className='flex flex-1 justify-around'>{renderNavItems(BUTTON_LIST.slice(2, 4))}</div>
+          <div className='flex flex-1 justify-around'>
+            {renderNavItems(BUTTON_LIST.slice(Math.ceil(BUTTON_LIST.length / 2)))}
+          </div>
         </div>
       </div>
     </nav>
