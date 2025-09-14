@@ -9,9 +9,9 @@ export const SocialLoginSection = () => {
         <hr className='h-px grow border-0 bg-gray-200' />
       </div>
       <div className='flex w-full items-center justify-center gap-4'>
-        <SocialLoginButton target='_self' variant='google' />
-        <SocialLoginButton target='_self' variant='naver' />
-        <SocialLoginButton target='_self' variant='kakao' />
+        <SocialLoginButton variant='google' />
+        <SocialLoginButton variant='naver' />
+        <SocialLoginButton variant='kakao' />
       </div>
     </div>
   );
