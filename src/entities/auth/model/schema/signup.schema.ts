@@ -3,8 +3,8 @@ import { z } from "zod";
 export const signupSchema = z
   .object({
     userId: z.string().min(1, "아이디를 입력해주세요."),
-    password: z.string().min(1, "비밀번호를 입력해주세요."),
-    confirmPassword: z.string().min(1, "비밀번호를 입력해주세요."),
+    password: z.string().min(6, "비밀번호를 6자 이상 입력해주세요."),
+    confirmPassword: z.string().min(6, "비밀번호를 다시 입력해주세요."),
     nickname: z.string().min(1, "닉네임을 입력해주세요."),
     isUserIdChecked: z.boolean(),
     isNicknameChecked: z.boolean(),
