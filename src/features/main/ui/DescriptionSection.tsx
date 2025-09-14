@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import Clip_Logo from "@/shared/_assets/logo/clip_3d.webp";
-
 type Props = {
   nickname: string;
   clipCount: number;
@@ -21,7 +19,7 @@ export const DescriptionSection = ({ nickname, clipCount }: Props) => {
           <span className='text-2xl'>기다리고 있어요!</span>
         </div>
       </div>
-      <Image alt='Clip Logo' className='h-auto' src={Clip_Logo} width={106} />
+      <Image alt='Clip Logo' className='h-auto' height={106} src='/logo/clip_3d.webp' width={106} />
     </section>
   );
 };

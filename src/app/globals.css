@@ -46,6 +46,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-naver: var(--naver-login-button);
+  --color-kakao: var(--kakao-login-button);
 }
 
 :root {
@@ -83,6 +85,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --naver-login-button: #03c75a;
+  --kakao-login-button: #fee500;
 }
 
 .dark {
