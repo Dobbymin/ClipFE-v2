@@ -1,4 +1,4 @@
-import { BASE_URL } from "../libs";
+import { BASE_URL } from "./fetch-instance";
 
 export type Platform = "kakao" | "naver" | "google";
 
