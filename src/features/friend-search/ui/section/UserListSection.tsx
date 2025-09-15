@@ -4,11 +4,13 @@ import { useState } from "react";
 
 import { UserCard } from "../../components";
 
+const initialFriends = [
+  { id: 1, name: "김클립", isFriend: false },
+  { id: 2, name: "김도비", isFriend: true },
+];
+
 export const UserListSection = () => {
-  const [friends, setFriends] = useState([
-    { id: 1, name: "김클립", isFriend: false },
-    { id: 2, name: "김도비", isFriend: true },
-  ]);
+  const [friends, setFriends] = useState(initialFriends);
 
   const handleToggleFriend = (clickedId: number) => {
     const updatedFriends = friends.map((friend) =>
