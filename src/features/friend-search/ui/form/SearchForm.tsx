@@ -11,6 +11,7 @@ export const SearchForm = () => {
           placeholder='닉네임을 입력해 주세요 (한글)'
         />
         <Button
+          aria-label='검색'
           className='flex size-10 shrink-0 items-center justify-center rounded-[5px] bg-clip-primary focus:outline-none'
           variant='secondary'
         >
