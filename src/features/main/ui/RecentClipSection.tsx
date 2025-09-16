@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useState } from "react";
 
-import { ClipCard, RECENT_CLIP_MOCK } from "@/shared";
+import { ClipCard, RECENT_CLIP_MOCK, ROUTER_PATH } from "@/shared";
 import { ChevronRight } from "lucide-react";
 
 type Props = {
@@ -40,7 +42,9 @@ export const RecentClipSection = ({ nickname }: Props) => {
         <div className='text-xl'>
           <b>{nickname}</b>님이 최근 저장한 클립
         </div>
-        <ChevronRight />
+        <Link href={ROUTER_PATH.CLIP}>
+          <ChevronRight className='size-6' />
+        </Link>
       </div>
       {isLoading ? (
         <div className='grid w-full auto-cols-[174px] grid-flow-col items-start justify-start gap-4 overflow-x-auto px-2 py-4'>
