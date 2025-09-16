@@ -11,6 +11,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Skeleton,
 } from "@/shared";
 
 export default function ClipPage() {
@@ -38,38 +39,40 @@ export default function ClipPage() {
     );
   }
 
-  if (isLoading) {
-    return (
-      <div className='flex w-full flex-col items-center justify-center gap-4 overflow-x-auto px-2 py-4'>
-        {Array.from({ length: 3 }).map((_, index) => (
-          <ClipCard.Skeleton key={index} variant='all' />
-        ))}
-      </div>
-    );
-  }
-
   return (
     <div className='flex w-full flex-col items-center justify-center px-4'>
       <div className='flex w-full justify-start text-lg'>태그별로 클립 보기</div>
       <div className='flex w-full justify-start py-4'>
-        <Select defaultValue='all'>
-          <SelectTrigger className='w-[180px]'>
-            <SelectValue placeholder='카테고리 선택' />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value='all'>전체 (12)</SelectItem>
-              <SelectItem value='youtube'>YouTube</SelectItem>
-              <SelectItem value='instagram'>Instagram</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        {isLoading ? (
+          <Skeleton className='h-9 w-[180px]' />
+        ) : (
+          <Select defaultValue='all'>
+            <SelectTrigger className='w-[180px]'>
+              <SelectValue placeholder='카테고리 선택' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value='all'>전체 (12)</SelectItem>
+                <SelectItem value='youtube'>YouTube</SelectItem>
+                <SelectItem value='instagram'>Instagram</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        )}
       </div>
-      <div className='flex w-full flex-col gap-4'>
-        {recentClipsData.content.map((data) => (
-          <ClipCard key={data.tagId} variant='all' {...data} />
-        ))}
-      </div>
+      {isLoading ? (
+        <div className='flex w-full flex-col items-center justify-center gap-4 overflow-x-auto px-2 py-4'>
+          {Array.from({ length: 4 }).map((_, index) => (
+            <ClipCard.Skeleton key={index} variant='all' />
+          ))}
+        </div>
+      ) : (
+        <div className='flex w-full flex-col gap-4'>
+          {recentClipsData.content.map((data) => (
+            <ClipCard key={data.tagId} variant='all' {...data} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
