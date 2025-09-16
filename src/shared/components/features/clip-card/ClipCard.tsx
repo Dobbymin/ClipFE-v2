@@ -1,57 +1,129 @@
+"use client";
+
 import Image from "next/image";
 
 import type { MouseEvent } from "react";
 
-import { Share2 } from "lucide-react";
+import { ClipContents } from "@/entities";
+import { Button, cn } from "@/shared";
+import { type VariantProps, cva } from "class-variance-authority";
+import { Ellipsis, Share2 } from "lucide-react";
 
-type Props = {
-  title: string;
-  url: string;
-  tagName: string;
-  thumbnail: string;
-  memo: string;
-};
+import { AllClipCardSkeleton } from "./AllClipCardSkeleton";
+import { RecentClipCardSkeleton } from "./RecentClipCardSkeleton";
 
-export const ClipCard = ({ thumbnail, tagName, title, memo, url }: Props) => {
+const clipCardVariants = cva("flex rounded-[10px] bg-white shadow-[0px_4px_15px_rgba(0,0,0,0.1)]", {
+  variants: {
+    variant: {
+      all: "h-[110px] w-full p-2.5 gap-3",
+      recent: "h-[210px] w-[174px] shrink-0 cursor-pointer flex-col items-start gap-3 p-2",
+    },
+  },
+});
+
+type Props = ClipContents & {
+  className?: string;
+} & VariantProps<typeof clipCardVariants>;
+
+export const ClipCard = ({ className, variant, tagName, title, memo, thumbnail, tagId, url }: Props) => {
   const openLink = () => {
-    window.open(url, "_blank");
+    if (url) window.open(url, "_blank");
   };
 
   const shareClip = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
 
-    // TODO: Toast를 사용하여 수정
     alert("공유 기능 준비 중입니다!");
   };
+
+  const isClickable = variant === "recent";
+
   return (
-    <div
-      className='flex h-[210px] w-[174px] shrink-0 cursor-pointer flex-col items-start gap-3 rounded-lg bg-white p-4 shadow-[0_4px_15px_0_rgba(0,0,0,0.25)]'
-      onClick={openLink}
-    >
-      <div className='flex w-full items-start justify-between'>
-        <Image
-          alt={title}
-          className='block rounded-[10px] bg-gray-300 object-cover'
-          height={90}
-          src={thumbnail}
-          width={90}
-        />
-        <button
-          className='flex cursor-pointer items-center justify-center rounded-full p-1 hover:bg-gray-100'
-          onClick={shareClip}
+    <div className={cn(clipCardVariants({ variant, className }))} onClick={isClickable ? openLink : undefined}>
+      <div className='flex w-fit'>
+        <div
+          className={cn(
+            "h-[90px] overflow-hidden rounded-lg bg-gray-200",
+            variant === "all" && "w-[120px]",
+            variant === "recent" && "w-[160px]",
+          )}
         >
-          <Share2 size={15} />
-        </button>
-      </div>
-      <div className='flex h-[20px] w-[60px] items-center justify-center rounded-[10px] border border-gray-200 bg-white'>
-        <span className='text-xs font-medium text-primary'>{tagName}</span>
-      </div>
-      <div className='flex w-full flex-col gap-2'>
-        <div className='text-md w-full overflow-hidden font-medium text-ellipsis whitespace-nowrap text-black'>
-          {title}
+          <Image alt={title} className='block size-full object-cover' height={90} src={thumbnail} width={160} />
         </div>
-        <div className='w-full overflow-hidden text-xs text-ellipsis whitespace-nowrap'>{memo}</div>
+      </div>
+      <div className='flex w-full flex-col'>
+        <div
+          className={cn(
+            "flex w-full justify-between",
+            variant === "all" && "items-start",
+            variant === "recent" && "items-center",
+          )}
+        >
+          <span
+            className={cn(
+              "flex rounded-full border border-clip-primary bg-white px-3 py-1 text-xs font-medium text-black",
+              variant === "all" && "rounded-full",
+              variant === "recent" && "items-center justify-center",
+            )}
+          >
+            {tagName}
+          </span>
+          {variant === "all" && (
+            <div className='cursor-pointer rounded p-1 hover:bg-gray-100'>
+              <Ellipsis size={20} />
+            </div>
+          )}
+          {variant === "recent" && (
+            <Button
+              className='size-6 rounded-full bg-black/20 text-white hover:bg-black/50 hover:text-white'
+              size='icon'
+              variant='ghost'
+              onClick={shareClip}
+            >
+              <Share2 className='size-4' />
+            </Button>
+          )}
+        </div>
+        <div
+          className={cn(
+            "flex flex-col",
+            variant === "all" && "gap-[5px] pt-1",
+            variant === "recent" && "w-full gap-2 pt-2.5",
+          )}
+        >
+          <h2
+            className={cn(
+              "line-clamp-1",
+              variant === "all" && "text-md font-bold text-gray-700",
+              variant === "recent" && "text-md font-semibold text-black",
+            )}
+          >
+            {title}
+          </h2>
+          <div
+            className={cn(
+              "line-clamp-1",
+              variant === "all" && "text-sm text-gray-600",
+              variant === "recent" && "w-full overflow-hidden text-xs text-ellipsis",
+            )}
+          >
+            {memo}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
+type SkeletonProps = {
+  variant: "all" | "recent";
+};
+
+const ClipCardSkeleton = ({ variant }: SkeletonProps) => {
+  if (variant === "recent") {
+    return <RecentClipCardSkeleton />;
+  }
+  return <AllClipCardSkeleton />;
+};
+
+ClipCard.Skeleton = ClipCardSkeleton;
