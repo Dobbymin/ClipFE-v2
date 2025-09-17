@@ -106,4 +106,4 @@ export const RECENT_CLIP_MOCK = {
   first: true,
   last: true,
   empty: false,
-};
+} as const;

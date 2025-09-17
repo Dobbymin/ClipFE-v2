@@ -7,7 +7,6 @@ export const ROUTER_PATH = {
   CLIP_SEARCH: "/clip/search",
   LOGIN: "/login",
   SIGN_UP: "/signup",
-  SEARCH: "/search",
   FRIEND_SEARCH: "/friend/search",
   FRIEND_SHARED: "/friend/shared",
   SETTING: "/setting",
