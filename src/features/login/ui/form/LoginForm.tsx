@@ -55,7 +55,7 @@ export const LoginForm = () => {
     <Form {...form}>
       <form
         className='flex w-full flex-col items-center justify-center gap-6 px-4'
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={(e) => e.preventDefault()}
       >
         <div className='flex w-80 flex-col gap-4'>
           <UserIdField />
@@ -67,6 +67,7 @@ export const LoginForm = () => {
             disabled={!form.formState.isValid || isPending}
             type='submit'
             variant='secondary'
+            onClick={form.handleSubmit(onSubmit)}
           >
             {isPending ? <Spinner size={20} /> : "로그인"}
           </Button>
